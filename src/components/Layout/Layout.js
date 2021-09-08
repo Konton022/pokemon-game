@@ -1,16 +1,18 @@
 import s from './style.module.css'
 
-const Layout = (props)=>{
+const Layout = ({title, descr, urlBg, colorBg })=>{
+    const back = urlBg? {backgroundImage: `url(${urlBg})`} : {backgroundColor: `${colorBg}` };
+
     return (
-        <section className={s.root}>
+        <section style={back} className={s.root}>
         <div className={s.wrapper}>
             <article>
                 <div className={s.title}>
-                    <h3>{props.title}</h3>
+                    <h3>{ title }</h3>
                     <span className={s.separator}></span>
                 </div>
-                <div className={s.desc.full}>
-                    <p>{props.descr}</p>
+                <div className={`${s.desc}, ${s.full}`}>
+                    <p>{ descr }</p>
                 </div>
             </article>
         </div>
