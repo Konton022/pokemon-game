@@ -12,6 +12,7 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+
 .root article {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

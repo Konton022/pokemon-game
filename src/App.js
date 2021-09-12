@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Layout from "./components/Layout/Layout";
 import Footer from "./components/Footer/Footer";
 import background from "./assets/bg1.jpeg";
+import logo from "./logo.svg";
 // import POKEMONS from "./pokemons.js";
 import PokemonCard from "./components/PokemonCard/PokemonCard";
 
@@ -169,7 +170,9 @@ function App() {
         title="This is thrid title string"
         descr="This is description string"
         urlBg={background}
-      />
+      >
+        <img src={logo} alt="logo" />
+      </Layout>
 
       <Footer />
     </div>
