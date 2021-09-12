@@ -1,6 +1,6 @@
 import s from "./style.module.css";
 
-const Layout = ({ title, descr, urlBg, colorBg, children }) => {
+const Layout = ({ title, urlBg, colorBg, children }) => {
   const back = urlBg
     ? { backgroundImage: `url(${urlBg})` }
     : { backgroundColor: `${colorBg}` };

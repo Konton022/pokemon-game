@@ -2,10 +2,9 @@ import app from "./App.module.css";
 import Header from "./components/Header/Header";
 import Layout from "./components/Layout/Layout";
 import Footer from "./components/Footer/Footer";
+import PokemonCard from "./components/PokemonCard/PokemonCard";
 import background from "./assets/bg1.jpeg";
 import logo from "./logo.svg";
-// import POKEMONS from "./pokemons.js";
-import PokemonCard from "./components/PokemonCard/PokemonCard";
 
 const POKEMONS = [
   {
