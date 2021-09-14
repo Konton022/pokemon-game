@@ -7,14 +7,17 @@ import app from "./App.module.css";
 import background from "../../assets/bg1.jpeg";
 import logo from "../../logo.svg";
 import POKEMONS from "../../pokemons";
+import MenuHeader from "../../components/MenuHeader/MenuHeader";
 
 const HomePage = ({ onChangePage }) => {
-  const handleClickButton = () => {
+  const handleClickButton = (page) => {
     console.log("####, <HomePage />");
-    onChangePage && onChangePage();
+    onChangePage && onChangePage(page);
   };
   return (
     <div className={app.App}>
+      <MenuHeader />
+
       <Header
         title="This is header title string"
         descr="This is description"
