@@ -2,7 +2,7 @@ import s from "./style.module.css";
 
 const Header = ({ title, descr, onClickButton }) => {
   const handleClick = () => {
-    console.log("###, <Header />");
+    //console.log("###, <Header />");
     onClickButton && onClickButton("game");
   };
   return (
