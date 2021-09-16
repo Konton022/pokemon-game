@@ -15,6 +15,7 @@ const pokemons = [
     base_experience: 122,
     height: 11,
     id: 17,
+    active: false,
     values: {
       top: "A",
       right: 2,
@@ -38,6 +39,7 @@ const pokemons = [
     base_experience: 157,
     height: 35,
     id: 24,
+    active: false,
     values: {
       top: 5,
       right: 9,
@@ -61,6 +63,7 @@ const pokemons = [
     base_experience: 112,
     height: 4,
     id: 25,
+    active: false,
     values: {
       top: 8,
       right: "A",
@@ -84,6 +87,7 @@ const pokemons = [
     base_experience: 64,
     height: 7,
     id: 1,
+    active: false,
     values: {
       top: 8,
       right: 4,
@@ -107,6 +111,7 @@ const pokemons = [
     base_experience: 62,
     height: 6,
     id: 4,
+    active: false,
     values: {
       top: 7,
       right: 6,

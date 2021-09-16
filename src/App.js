@@ -5,26 +5,31 @@ import GamePage from "./routes/Game/Game";
 import HomePage from "./routes/Home/Home";
 import MenuHeader from "./components/MenuHeader/MenuHeader";
 import Footer from "./components/Footer/Footer";
+import NotFound from "./routes/NotFound";
+import AboutPage from "./routes/AboutPage";
+
 import s from './App.module.css'
+import ContactPage from "./routes/ContactPage";
 
 const App = () => {
 
-  const match = useRouteMatch('/')
-  //console.log('###match ', match)
+  const { isExact } = useRouteMatch('/')
+  console.log('###match ', isExact)
   return (
 
     <Switch>
-      <Route path='/404' render={() => <h1>404 NOT FOUND</h1>} />
+      <Route path='/404' component={NotFound} />
       <Route>
         <>
-          <MenuHeader bgActive={!match.isExact} />
-          <div className={cn(s.wrap, { [s.isHomePage]: match.isExact })}>
+          <MenuHeader bgActive={!isExact} />
+          <div className={cn(s.wrap, { [s.isHomePage]: isExact })}>
             <Switch>
               <Route path='/' exact component={HomePage} />
               <Route path='/home' component={HomePage} />
               <Route path='/game' component={GamePage} />
-              <Route path='/about' render={() => <h1>This is page ABOUT </h1>} />
-              <Route render={() => { <Redirect to='/404' /> }} />
+              <Route path='/about' component={AboutPage} />
+              <Route path='/contact' component={ContactPage} />
+              <Route render={() => <Redirect to='/404' />} />
             </Switch>
 
           </div>
