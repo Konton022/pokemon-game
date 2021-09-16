@@ -4,11 +4,11 @@ import classNames from "classnames";
 import s from "./style.module.css";
 import cardBackSide from "../../assets/card-back-side.jpeg";
 
-const PokemonCard = ({ type, values, img, name, id, active }) => {
-
+const PokemonCard = ({ type, values, img, name, id, active, handleId }) => {
   const handleClick = () => {
-    console.log('###id ', id)
-  }
+    console.log("###id PokemonCard  ", id);
+    handleId && handleId(id);
+  };
 
   return (
     <div className={s.root} onClick={handleClick}>
