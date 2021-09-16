@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import cn from "classnames";
 import s from "./style.module.css";
 
 const MENU = [
-  { title: 'HOME', to: '#welcome' },
-  { title: 'GAME', to: '#game' },
-  { title: 'ABOUT', to: '#about' },
+  { title: 'HOME', to: 'home' },
+  { title: 'GAME', to: 'game' },
+  { title: 'ABOUT', to: 'about' },
   { title: 'CONTACT', to: '#contact' }
 ]
 
@@ -21,7 +22,7 @@ const Menu = ({ isActive }) => {
         <ul>
           {MENU.map(({ title, to }, index) => {
             return (<li key={index}>
-              <a href={to}>{title}</a>
+              <Link to={to}>{title}</Link>
             </li>)
           }
           )}
