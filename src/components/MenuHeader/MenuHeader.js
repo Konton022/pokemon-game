@@ -3,17 +3,17 @@ import Menu from "../Menu/Menu";
 import NavBar from "../NavBar/NavBar";
 // import s from "./style.module.css";
 
-const MenuHeader = () => {
-  const [active, setActive] = useState(false);
+const MenuHeader = ({ bgActive }) => {
+  const [active, setActive] = useState(null);
 
   const handleClickButton = () => {
-    setActive(!active);
+    setActive(prevState => !prevState);
     // console.log("### active: ", active);
   };
   return (
     <div>
       <Menu isActive={active} />
-      <NavBar isActive={active} onClickButton={handleClickButton} />
+      <NavBar isActive={active} bgActive={bgActive} onClickButton={handleClickButton} />
     </div>
   );
 };

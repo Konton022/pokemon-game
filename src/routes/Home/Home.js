@@ -1,22 +1,19 @@
 import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout";
-import Footer from "../../components/Footer/Footer";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 
 import app from "./App.module.css";
 import background from "../../assets/bg1.jpeg";
 import logo from "../../logo.svg";
 import POKEMONS from "../../pokemons";
-import MenuHeader from "../../components/MenuHeader/MenuHeader";
 
 const HomePage = ({ onChangePage }) => {
   const handleClickButton = (page) => {
-    console.log("####, <HomePage />");
+    //console.log("####, <HomePage />");
     onChangePage && onChangePage(page);
   };
   return (
     <div className={app.App}>
-      <MenuHeader />
 
       <Header
         title="This is header title string"
@@ -63,7 +60,7 @@ const HomePage = ({ onChangePage }) => {
         <img src={logo} alt="logo" />
       </Layout>
 
-      <Footer />
+
     </div>
   );
 };
