@@ -3,7 +3,7 @@ import cn from "classnames";
 import s from "./style.module.css";
 
 const MENU = [
-  { title: 'HOME', to: '/home' },
+  { title: 'HOME', to: '/' },
   { title: 'GAME', to: '/game' },
   { title: 'ABOUT', to: '/about' },
   { title: 'CONTACT', to: '/contact' }
