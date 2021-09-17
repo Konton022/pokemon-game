@@ -3,10 +3,10 @@ import cn from "classnames";
 import s from "./style.module.css";
 
 const MENU = [
-  { title: 'HOME', to: 'home' },
-  { title: 'GAME', to: 'game' },
-  { title: 'ABOUT', to: 'about' },
-  { title: 'CONTACT', to: 'contact' }
+  { title: 'HOME', to: '/home' },
+  { title: 'GAME', to: '/game' },
+  { title: 'ABOUT', to: '/about' },
+  { title: 'CONTACT', to: '/contact' }
 ]
 
 const Menu = ({ isActive }) => {
@@ -23,7 +23,9 @@ const Menu = ({ isActive }) => {
           {MENU.map(({ title, to }, index) => {
             return (<li key={index}>
               <Link to={to}>{title}</Link>
-            </li>)
+
+            </li>
+            )
           }
           )}
         </ul>
