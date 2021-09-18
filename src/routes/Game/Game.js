@@ -3,7 +3,7 @@ import PokemonCard from "../../components/PokemonCard/PokemonCard";
 import Layout from "../../components/Layout/Layout";
 import POKEMONS from "../../pokemons";
 import s from "./style.module.css";
-import pokemons from "../../pokemons";
+
 function GamePage() {
   const [pokemonArr, setArr] = useState(POKEMONS);
 
