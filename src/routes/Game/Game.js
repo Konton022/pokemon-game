@@ -1,43 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import database from "../../service/firebase";
+
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import Layout from "../../components/Layout/Layout";
-import POKEMONS from "../../pokemons";
+
 import s from "./style.module.css";
 
 function GamePage() {
-  const [pokemonArr, setArr] = useState(POKEMONS);
-
-  const setNewId = (id) => {
-    // console.log("###Game", id, "### pokemonArr ", pokemonArr);
-    setArr((prevState) =>
-      prevState.map((item) => {
-        if (item.id == id) {
-          item.active = !item.active;
+  const [pokemons, setPokemons] = useState({});
+  useEffect(() => {
+    database.ref("pokemons").once("value", (snapshot) => {
+      // console.log(snapshot.val());
+      setPokemons(snapshot.val());
+    });
+  }, []);
+  const handleChangeActive = (id) => {
+    setPokemons((prevState) => {
+      return Object.entries(prevState).reduce((acc, item) => {
+        const pokemon = { ...item[1] };
+        if (pokemon.id === id) {
+          pokemon.active = !pokemon.active;
         }
-        return item;
-      })
-    );
+        console.log("###pokemon.id", pokemon, pokemon.active);
+        acc[item[0]] = pokemon;
+        // console.log("###acc[item[0]] ", acc[item[0]]);
+        // database.ref("pokemons" + acc[item[0]]).set({ pokemon });
+        return acc;
+      }, {});
+    });
   };
 
   return (
-    <>
-      <Layout title="POKEMON CARD GAME" colorBg="#8c999d">
-        <div className={s.flex}>
-          {POKEMONS.map((item) => (
-            <PokemonCard
-              key={item.id}
-              name={item.name}
-              type={item.type}
-              id={item.id}
-              img={item.img}
-              values={item.values}
-              active={item.active}
-              handleId={setNewId}
-            />
-          ))}
-        </div>
-      </Layout>
-    </>
+    <div className={s.flex}>
+      {Object.entries(pokemons).map(
+        ([key, { name, type, id, img, values, active }]) => (
+          <PokemonCard
+            key={key}
+            name={name}
+            type={type}
+            id={id}
+            img={img}
+            values={values}
+            active={active}
+            handleId={handleChangeActive}
+          />
+        )
+      )}
+    </div>
   );
 }
 
