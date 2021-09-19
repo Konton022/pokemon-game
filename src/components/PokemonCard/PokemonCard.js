@@ -4,10 +4,20 @@ import classNames from "classnames";
 import s from "./style.module.css";
 import cardBackSide from "../../assets/card-back-side.jpeg";
 
-const PokemonCard = ({ type, values, img, name, id, active, handleId }) => {
+const PokemonCard = ({
+  objID,
+  key,
+  type,
+  values,
+  img,
+  name,
+  id,
+  active,
+  handleId,
+}) => {
   const handleClick = () => {
-    console.log("###id PokemonCard  ", id);
-    handleId && handleId(id);
+    handleId && handleId(id, !active, objID);
+    // console.log("###id PokemonCard  ", id, !active, objID);
   };
 
   return (
