@@ -1,11 +1,9 @@
 import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout";
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
 
 import app from "./App.module.css";
 import background from "../../assets/bg1.jpeg";
 import logo from "../../logo.svg";
-import POKEMONS from "../../pokemons";
 
 const HomePage = ({ onChangePage }) => {
   const handleClickButton = (page) => {
@@ -14,7 +12,6 @@ const HomePage = ({ onChangePage }) => {
   };
   return (
     <div className={app.App}>
-
       <Header
         title="This is header title string"
         descr="This is description"
@@ -41,7 +38,7 @@ const HomePage = ({ onChangePage }) => {
         </p>
       </Layout>
 
-      <Layout title="This is second title string" colorBg="#8c999d">
+      {/* <Layout title="This is second title string" colorBg="#8c999d">
         <div className={app.flex}>
           {POKEMONS.map((item) => (
             <PokemonCard
@@ -54,13 +51,11 @@ const HomePage = ({ onChangePage }) => {
             />
           ))}
         </div>
-      </Layout>
+      </Layout> */}
 
       <Layout title="This is thrid title string" urlBg={background}>
         <img src={logo} alt="logo" />
       </Layout>
-
-
     </div>
   );
 };

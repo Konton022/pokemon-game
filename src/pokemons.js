@@ -14,8 +14,7 @@ const pokemons = [
     name: "pidgeotto",
     base_experience: 122,
     height: 11,
-    id: 17,
-    active: false,
+    id: 170,
     values: {
       top: "A",
       right: 2,
@@ -38,8 +37,7 @@ const pokemons = [
     name: "arbok",
     base_experience: 157,
     height: 35,
-    id: 24,
-    active: false,
+    id: 240,
     values: {
       top: 5,
       right: 9,
@@ -62,8 +60,7 @@ const pokemons = [
     name: "pikachu",
     base_experience: 112,
     height: 4,
-    id: 25,
-    active: false,
+    id: 250,
     values: {
       top: 8,
       right: "A",
@@ -86,8 +83,7 @@ const pokemons = [
     name: "bulbasaur",
     base_experience: 64,
     height: 7,
-    id: 1,
-    active: false,
+    id: 10,
     values: {
       top: 8,
       right: 4,
@@ -110,8 +106,7 @@ const pokemons = [
     name: "charmander",
     base_experience: 62,
     height: 6,
-    id: 4,
-    active: false,
+    id: 40,
     values: {
       top: 7,
       right: 6,
