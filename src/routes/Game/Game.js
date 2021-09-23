@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const GamePage = () => {
   const [selectedPokemons, setSelectedPokemons] = useState({});
-  console.log("selectedPokemons", selectedPokemons);
+  // console.log("selectedPokemons", selectedPokemons);
   const match = useRouteMatch();
   const handleSelectedPokemons = (key, pokemon) => {
     setSelectedPokemons((prevState) => {

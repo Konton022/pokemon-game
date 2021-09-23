@@ -13,7 +13,7 @@ function StartPage() {
   const firebase = useContext(FireBaseContext);
   const pokemonsContext = useContext(PokemonContext);
   const history = useHistory();
-  console.log("###pokemonContext", pokemonsContext);
+  //console.log("###pokemonContext", pokemonsContext);
   const [pokemons, setPokemons] = useState({});
   //   console.log("###firebase", firebase);
 
