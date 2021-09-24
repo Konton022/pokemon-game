@@ -31,6 +31,7 @@
 }
 
 .card {
+  max-width: 18vw;
   max-height: 14.8vw;
   margin-top: -6vw;
 }

@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import PokemonCard from "../../../../components/PokemonCard/PokemonCard";
 import { PokemonContext } from "../../../../context/pokemonContext";
+import PlayerBoard from "./PlayerBoard";
 import s from "./style.module.css";
 
 const BoardPage = () => {
   const { pokemons } = useContext(PokemonContext);
   const [player2, setPlayer2] = useState([]);
   const history = useHistory();
+  const [choiceCard, setChoiceCard] = useState(null)
   const [board, setBoard] = useState([]);
   // console.log(board);
   useEffect(async () => {
@@ -28,39 +30,16 @@ const BoardPage = () => {
     history.replace("/game");
   }
   const handleClickBoardPlate = (position) => {
-    // console.log("position ", position);
+    console.log("position ", position);
+    console.log('choiceCard', choiceCard);
   };
   return (
     <div className={s.root}>
       <div className={s.playerOne}>
-        {Object.values(pokemons).map(({ id, name, type, img, values }) => (
-          <PokemonCard
-            className={s.card}
-            key={id}
-            name={name}
-            type={type}
-            id={id}
-            img={img}
-            values={values}
-            minimize
-            active
-          />
-        ))}
+        <PlayerBoard cards={Object.values(pokemons)} onClickCard={(card) => setChoiceCard(card)} />
       </div>
       <div className={s.playerTwo}>
-        {player2.map(({ id, name, type, img, values }) => (
-          <PokemonCard
-            className={s.card}
-            key={id}
-            name={name}
-            type={type}
-            id={id}
-            img={img}
-            values={values}
-            minimize
-            active
-          />
-        ))}
+        <PlayerBoard cards={player2} onClickCard={(card) => setChoiceCard(card)} />
       </div>
       <div className={s.board}>
         {board.map((item) => (
