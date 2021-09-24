@@ -3,7 +3,7 @@ import PokemonCard from "../../../../../components/PokemonCard/PokemonCard";
 import cn from 'classnames'
 import { useState } from 'react';
 
-const PlayerBoard = ({ cards, onClickCard }) => {
+const PlayerBoard = ({ player, cards, onClickCard }) => {
   const [isSelected, setSelected] = useState(null)
   return (<div>
 

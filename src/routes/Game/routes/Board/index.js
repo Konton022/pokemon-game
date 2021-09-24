@@ -7,6 +7,7 @@ import s from "./style.module.css";
 
 const BoardPage = () => {
   const { pokemons } = useContext(PokemonContext);
+  const [player1, setPlayer1] = useState(() => { return Object.values(pokemons).map(item => ({ ...item, possession: 'blue', })) });
   const [player2, setPlayer2] = useState([]);
   const history = useHistory();
   const [choiceCard, setChoiceCard] = useState(null)
@@ -23,7 +24,7 @@ const BoardPage = () => {
       "https://reactmarathon-api.netlify.app/api/create-player"
     );
     const player2Request = await player2Response.json();
-    setPlayer2(player2Request.data);
+    setPlayer2(() => { return player2Request.data.map(item => ({ ...item, possession: 'red' })) });
     // console.log("player2  ", player2Request);
   }, []);
   if (Object.keys(pokemons).length === 0) {
@@ -36,10 +37,10 @@ const BoardPage = () => {
   return (
     <div className={s.root}>
       <div className={s.playerOne}>
-        <PlayerBoard cards={Object.values(pokemons)} onClickCard={(card) => setChoiceCard(card)} />
+        <PlayerBoard player={player1} cards={Object.values(pokemons)} onClickCard={(card) => setChoiceCard(card)} />
       </div>
       <div className={s.playerTwo}>
-        <PlayerBoard cards={player2} onClickCard={(card) => setChoiceCard(card)} />
+        <PlayerBoard player={player2} cards={player2} onClickCard={(card) => setChoiceCard(card)} />
       </div>
       <div className={s.board}>
         {board.map((item) => (
