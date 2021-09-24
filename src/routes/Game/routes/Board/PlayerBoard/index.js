@@ -15,8 +15,8 @@ const PlayerBoard = (cards) => {
             values={values}
             minimize
             active
-          />
-  </div>;
+          />))}
+</div>;
 };
 
 export default PlayerBoard;
