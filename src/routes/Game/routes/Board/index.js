@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import PokemonCard from "../../../../components/PokemonCard/PokemonCard";
 import { PokemonContext } from "../../../../context/pokemonContext";
+import { PlayersContext } from "../../../../context/playersContext";
 import PlayerBoard from "./PlayerBoard";
 import s from "./style.module.css";
 
@@ -20,6 +21,8 @@ const counterWin = (board, player1, player2) => {
 };
 
 const BoardPage = () => {
+  const playersContext = useContext(PlayersContext);
+  // console.log(playersContext);
   const { pokemons } = useContext(PokemonContext);
   const [player1, setPlayer1] = useState(() => {
     return Object.values(pokemons).map((item) => ({
@@ -27,11 +30,16 @@ const BoardPage = () => {
       possession: "blue",
     }));
   });
+  useEffect(() => {
+    playersContext.selectedPlayer1(player1);
+  }, []);
+
   const [player2, setPlayer2] = useState([]);
   const history = useHistory();
   const [choiceCard, setChoiceCard] = useState(null);
   const [board, setBoard] = useState([]);
   const [steps, setSteps] = useState(0);
+
   // console.log("board", board);
   useEffect(async () => {
     const boardResponse = await fetch(
@@ -44,20 +52,22 @@ const BoardPage = () => {
       "https://reactmarathon-api.netlify.app/api/create-player"
     );
     const player2Request = await player2Response.json();
+
+    playersContext.selectedPlayer2(player2Request.data);
+
     setPlayer2(() => {
       return player2Request.data.map((item) => ({
         ...item,
         possession: "red",
       }));
+      // playersContext.selectedPlayer2(tempPlayer2);
     });
-    // console.log("player2  ", player2Request);
   }, []);
+
   if (Object.keys(pokemons).length === 0) {
     history.replace("/game");
   }
   const handleClickBoardPlate = async (position) => {
-    // console.log("position ", position);
-    // console.log("choiceCard", choiceCard);
     if (choiceCard) {
       const params = { position, card: choiceCard, board };
       const res = await fetch(
@@ -103,9 +113,10 @@ const BoardPage = () => {
       } else {
         alert("DRAW");
       }
+      history.push("/game/finish");
     }
   }, [steps]);
-  // console.log("PB possesion", possesion);
+
   return (
     <div className={s.root}>
       <div className={s.playerOne}>
