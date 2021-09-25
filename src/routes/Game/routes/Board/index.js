@@ -107,6 +107,7 @@ const BoardPage = () => {
     if (steps === 9) {
       const [count1, count2] = counterWin(board, player1, player2);
       if (count1 > count2) {
+        playersContext.getWinStatus(true);
         alert("YOU WIN");
       } else if (count1 < count2) {
         alert("YOU LOSE");

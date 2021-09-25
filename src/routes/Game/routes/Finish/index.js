@@ -7,11 +7,15 @@ import s from "./style.module.css";
 
 const FinishPage = () => {
   const history = useHistory();
-  const { player1, player2 } = useContext(PlayersContext);
-  console.log("Finish pok", player1, player2);
+  const { player1, player2, isWin } = useContext(PlayersContext);
+  console.log("Finish pok", isWin);
 
   const handleClickButton = () => {
     history.replace("/");
+  };
+
+  const handleClickCard = () => {
+    console.log("click ");
   };
 
   return (
@@ -50,6 +54,7 @@ const FinishPage = () => {
               active
               minimize
               isSelected={false}
+              handleId={handleClickCard}
             />
           );
         })}

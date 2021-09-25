@@ -10,6 +10,7 @@ const GamePage = () => {
   const [selectedPokemons, setSelectedPokemons] = useState({});
   const [player1, setPlayer1] = useState([]);
   const [player2, setPlayer2] = useState([]);
+  const [isWin, setIsWin] = useState(false);
   // console.log("selectedPokemons", selectedPokemons);
   const match = useRouteMatch();
   const handleSelectedPokemons = (key, pokemon) => {
@@ -30,7 +31,11 @@ const GamePage = () => {
     // console.log("cards", cards);
     setPlayer2((prevState) => [...prevState, ...cards]);
   };
-  // console.log("player2", player2);
+
+  const getWinMyStatus = (winStatus) => {
+    setIsWin((prevState) => (prevState = winStatus));
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -44,8 +49,10 @@ const GamePage = () => {
           value={{
             player1: player1,
             player2: player2,
+            isWin: isWin,
             selectedPlayer1: selectedCardsPlayer1,
             selectedPlayer2: selectedCardsPlayer2,
+            getWinStatus: getWinMyStatus,
           }}
         >
           <Route path={`${match.path}/board`} component={BoardPage} />
