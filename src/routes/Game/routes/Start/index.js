@@ -1,9 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import localPokemons from "../../../../pokemons";
-// import database from "../../../../service/firebase";
-import Button from "../../../../components/Button";
 import PokemonCard from "../../../../components/PokemonCard/PokemonCard";
-
 import s from "./style.module.css";
 import { FireBaseContext } from "../../../../context/firebaseContext";
 import { PokemonContext } from "../../../../context/pokemonContext";
