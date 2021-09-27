@@ -36,6 +36,12 @@ const GamePage = () => {
     setIsWin((prevState) => (prevState = winStatus));
   };
 
+  const clearPlayersContext = (state1, state2, isWin) => {
+    setPlayer1((prevState) => (prevState = state1));
+    setPlayer2((prevState) => (prevState = state2));
+    setIsWin((prevState) => (prevState = isWin));
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -53,6 +59,7 @@ const GamePage = () => {
             selectedPlayer1: selectedCardsPlayer1,
             selectedPlayer2: selectedCardsPlayer2,
             getWinStatus: getWinMyStatus,
+            clearContext: clearPlayersContext,
           }}
         >
           <Route path={`${match.path}/board`} component={BoardPage} />

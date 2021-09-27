@@ -34,7 +34,7 @@ class Firebase {
       .then((snapshot) => snapshot.val());
   };
   postPokemon = (key, pokemon) => {
-    this.database.ref(`pokemons/${key}`).set(pokemon);
+    this.database.ref(`pokemons/${key}`).update(pokemon);
   };
   addPokemon = (data, cb) => {
     const newKey = this.database.ref().child("pokemons").push().key;

@@ -19,3 +19,8 @@
   padding: 6px;
   cursor: pointer;
 }
+
+.win {
+  font-size: large;
+  visibility: visible;
+}

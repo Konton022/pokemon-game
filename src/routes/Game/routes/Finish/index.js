@@ -6,6 +6,7 @@ import { PlayersContext } from "../../../../context/playersContext";
 import { FireBaseContext } from "../../../../context/firebaseContext";
 
 import s from "./style.module.css";
+import cn from "classnames";
 
 const FinishPage = () => {
   const firebase = useContext(FireBaseContext);
@@ -17,18 +18,23 @@ const FinishPage = () => {
 
   const handleClickButton = () => {
     if (isWin === true) {
-      const newKey = firebase.database.ref().child("pokemons").push().key;
-      firebase.postPokemon(newKey, chosenCard);
-      // database.ref("pokemons/" + newKey).set(chosenCard);
+      if (chosenCard) {
+        const newKey = firebase.database.ref().child("pokemons").push().key;
+        firebase.postPokemon(newKey, chosenCard);
+        playersContext.clearContext([], [], false);
+        history.replace("/game");
+      } else {
+        alert("choice NEW POKEMON CARD!");
+      }
+    } else {
+      playersContext.clearContext([], [], false);
+      history.replace("/game");
     }
-    playersContext.selectedPlayer1([]);
-    playersContext.selectedPlayer2([]);
-    playersContext.getWinStatus(false);
-    history.replace("/game");
+    // database.ref("pokemons/" + newKey).set(chosenCard);
   };
 
   const handleClickDiv = (item) => {
-    console.log("click ---", item);
+    // console.log("click ---", item);
     setChosenCard((prevState) => (prevState = item));
   };
   console.log("chosenCard", chosenCard);
@@ -51,6 +57,9 @@ const FinishPage = () => {
             />
           );
         })}
+      </div>
+      <div className={cn({ [s.win]: isWin })}>
+        Choice your new POKEMON and click the BUTTON !!!
       </div>
       <button onClick={handleClickButton}>END GAME</button>
       <div className={s.flex}>
