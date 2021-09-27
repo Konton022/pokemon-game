@@ -5,7 +5,7 @@ import s from "./style.module.css";
 const Header = ({ title, descr, onClickButton }) => {
   const history = useHistory();
   const handleClick = () => {
-    console.log("###, <Header />");
+    //console.log("###, <Header />");
     history.push("/game");
   };
   return (

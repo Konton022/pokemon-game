@@ -1,9 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import localPokemons from "../../../../pokemons";
-// import database from "../../../../service/firebase";
-import Button from "../../../../components/Button";
 import PokemonCard from "../../../../components/PokemonCard/PokemonCard";
-
 import s from "./style.module.css";
 import { FireBaseContext } from "../../../../context/firebaseContext";
 import { PokemonContext } from "../../../../context/pokemonContext";
@@ -13,7 +9,7 @@ function StartPage() {
   const firebase = useContext(FireBaseContext);
   const pokemonsContext = useContext(PokemonContext);
   const history = useHistory();
-  console.log("###pokemonContext", pokemonsContext);
+  //console.log("###pokemonContext", pokemonsContext);
   const [pokemons, setPokemons] = useState({});
   //   console.log("###firebase", firebase);
 
@@ -53,8 +49,8 @@ function StartPage() {
         {Object.entries(pokemons).map(
           ([key, { name, type, id, img, values, selected }]) => (
             <PokemonCard
-              className={s.card}
               key={key}
+              className={s.card}
               name={name}
               type={type}
               id={id}
