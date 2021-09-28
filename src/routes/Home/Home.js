@@ -4,11 +4,21 @@ import Layout from "../../components/Layout/Layout";
 import app from "./App.module.css";
 import background from "../../assets/bg1.jpeg";
 import logo from "../../logo.svg";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { plusAction } from "../../store/counter";
 
-const HomePage = ({ onChangePage }) => {
-  const handleClickButton = (page) => {
-    //console.log("####, <HomePage />");
-    onChangePage && onChangePage(page);
+const HomePage = () => {
+  const history = useHistory();
+  const count = useSelector((state) => state.value)
+  const dispatch = useDispatch()
+  console.log(count);
+  const handleClickButton = (onChangePage) => {
+    console.log("####, <HomePage />");
+    onChangePage && onChangePage();
+    history.push('/game')
+    dispatch(plusAction(1))
+
   };
   return (
     <div className={app.App}>
