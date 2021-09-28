@@ -10,17 +10,14 @@ import { plusAction, selectCount } from "../../store/counter";
 
 const HomePage = () => {
   const history = useHistory();
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch()
-
+  const count = useSelector(selectCount);
+  const dispatch = useDispatch();
 
   console.log(count);
   const handleClickButton = (onChangePage) => {
     //console.log("####, <HomePage />");
     onChangePage && onChangePage();
-    //history.push('/game')
-    dispatch(plusAction(1))
-
+    history.push("/game");
   };
   return (
     <div className={app.App}>
