@@ -6,17 +6,19 @@ import background from "../../assets/bg1.jpeg";
 import logo from "../../logo.svg";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { plusAction } from "../../store/counter";
+import { plusAction, selectCount } from "../../store/counter";
 
 const HomePage = () => {
   const history = useHistory();
-  const count = useSelector((state) => state.value)
+  const count = useSelector(selectCount)
   const dispatch = useDispatch()
+
+
   console.log(count);
   const handleClickButton = (onChangePage) => {
-    console.log("####, <HomePage />");
+    //console.log("####, <HomePage />");
     onChangePage && onChangePage();
-    history.push('/game')
+    //history.push('/game')
     dispatch(plusAction(1))
 
   };
