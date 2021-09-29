@@ -11,7 +11,7 @@ import AboutPage from "./routes/AboutPage";
 import s from "./App.module.css";
 import ContactPage from "./routes/ContactPage";
 import { FireBaseContext } from "./context/firebaseContext";
-import Firebase from "./service/firebase";
+// import Firebase from "./service/firebase";
 import FirebaseClass from "./service/firebase";
 const App = () => {
   const location = useLocation();

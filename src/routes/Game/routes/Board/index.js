@@ -2,9 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import PokemonCard from "../../../../components/PokemonCard/PokemonCard";
 import { PokemonContext } from "../../../../context/pokemonContext";
-import { PlayersContext } from "../../../../context/playersContext";
+// import { PlayersContext } from "../../../../context/playersContext";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setWin,
+  setChosenPokemons,
+  setPokemonsData,
+  setPlayerOneWin,
+} from "../../../../store/chosenPokemons";
+
+import {
+  setEnemyPokemons,
+  setEnemyPokemonsData,
+} from "../../../../store/enemyPokemons";
+
 import PlayerBoard from "./PlayerBoard";
 import s from "./style.module.css";
+import { selectPokemonsData } from "../../../../store/pokemons";
 
 const counterWin = (board, player1, player2) => {
   let player1Count = player1.length;
@@ -21,9 +36,18 @@ const counterWin = (board, player1, player2) => {
 };
 
 const BoardPage = () => {
-  const playersContext = useContext(PlayersContext);
+  const playersRedux = useSelector(setPokemonsData);
+  const enemyPlayersRedux = useSelector(setEnemyPokemonsData);
+  console.log("###playersRedux", playersRedux);
+  console.log("###enemyPlayrsRedux", enemyPlayersRedux);
+  const dispatch = useDispatch();
+
+  // const playersContext = useContext(PlayersContext);
   // console.log(playersContext);
   const { pokemons } = useContext(PokemonContext);
+  console.log("pokemons", pokemons);
+  const pokemonsRedux = useSelector(selectPokemonsData);
+  console.log("pokemonsRedux:", pokemonsRedux);
   const [player1, setPlayer1] = useState(() => {
     return Object.values(pokemons).map((item) => ({
       ...item,
@@ -31,7 +55,10 @@ const BoardPage = () => {
     }));
   });
   useEffect(() => {
-    playersContext.selectedPlayer1(player1);
+    // playersContext.selectedPlayer1(player1);
+
+    //REDUX SET PLAYER1
+    dispatch(setChosenPokemons(player1, setPokemonsData));
   }, []);
 
   const [player2, setPlayer2] = useState([]);
@@ -53,8 +80,8 @@ const BoardPage = () => {
     );
     const player2Request = await player2Response.json();
 
-    playersContext.selectedPlayer2(player2Request.data);
-
+    // playersContext.selectedPlayer2(player2Request.data);
+    dispatch(setEnemyPokemons(player2Request.data, setEnemyPokemonsData));
     setPlayer2(() => {
       return player2Request.data.map((item) => ({
         ...item,
@@ -107,7 +134,8 @@ const BoardPage = () => {
     if (steps === 9) {
       const [count1, count2] = counterWin(board, player1, player2);
       if (count1 > count2) {
-        playersContext.getWinStatus(true);
+        dispatch(setWin(true, setPlayerOneWin));
+        // playersContext.getWinStatus(true);
         alert("YOU WIN");
       } else if (count1 < count2) {
         alert("YOU LOSE");

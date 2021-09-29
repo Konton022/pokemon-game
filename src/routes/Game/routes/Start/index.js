@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import PokemonCard from "../../../../components/PokemonCard/PokemonCard";
 import s from "./style.module.css";
-import { FireBaseContext } from "../../../../context/firebaseContext";
+// import { FireBaseContext } from "../../../../context/firebaseContext";
 import { PokemonContext } from "../../../../context/pokemonContext";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,14 +12,15 @@ import {
 } from "../../../../store/pokemons";
 
 function StartPage() {
-  const firebase = useContext(FireBaseContext);
+  // const firebase = useContext(FireBaseContext);
   const pokemonsContext = useContext(PokemonContext);
+
   const isLoading = useSelector(selectPokemonsLoading);
   const pokemonsRedux = useSelector(selectPokemonsData);
 
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log("###pokemonRedux", pokemonsRedux);
+  // console.log("###pokemonRedux", pokemonsRedux);
   const [pokemons, setPokemons] = useState({});
 
   //   console.log("###firebase", firebase);
@@ -35,6 +36,7 @@ function StartPage() {
   const handleChangeSelected = (key) => {
     const pokemon = { ...pokemons[key] };
     pokemonsContext.onSelectedPokemons(key, pokemon);
+
     // console.log(key);
     setPokemons((prevState) => ({
       ...prevState,

@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter";
+
 import pokemonsReducer from "./pokemons";
-import choicePokemonsReducer from "./selectPokemons";
+import choicePokemonsReducer from "./chosenPokemons";
+import enemyPokemonReducer from "./enemyPokemons";
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
     pokemons: pokemonsReducer,
-    choicePokemons: choicePokemonsReducer,
+    chosenPokemons: choicePokemonsReducer,
+    enemyPokemons: enemyPokemonReducer,
   },
 });
