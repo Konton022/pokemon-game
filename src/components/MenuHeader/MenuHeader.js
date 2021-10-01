@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { NotificationManager } from "react-notifications";
 import LoginForm from "../LoginForm";
@@ -38,6 +38,7 @@ const MenuHeader = ({ bgActive }) => {
     if (response.hasOwnProperty("error")) {
       NotificationManager.error(response.error.message, "Wrong!");
     } else {
+      localStorage.setItem("idToken", response.idToken);
       NotificationManager.success("Successe message!");
     }
   };

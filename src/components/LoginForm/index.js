@@ -1,8 +1,9 @@
 import { useState } from "react";
+import Input from "../Input";
 
 const LoginForm = ({ onSubmit }) => {
-  const [email, setEmail] = useState("example@mail.ru");
-  const [password, setPassword] = useState("password!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,6 +22,15 @@ const LoginForm = ({ onSubmit }) => {
             setEmail(event.target.value);
           }}
         />
+        <div>
+          <Input
+            value={email}
+            name="email"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+        </div>
       </div>
       <div>
         <input
