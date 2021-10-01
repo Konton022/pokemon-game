@@ -1,24 +1,40 @@
 import { useState } from "react";
 
 const LoginForm = ({ onSubmit }) => {
-    const [email, setEmail] = useState()
+  const [email, setEmail] = useState("example@mail.ru");
+  const [password, setPassword] = useState("password!");
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value)
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit && onSubmit({ email, password });
+    setEmail("");
+    setPassword("");
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <input
+          value={email}
+          type="text"
+          name="email"
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <input
+          value={password}
+          type="password"
+          name="password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+      </div>
+      <button>Login</button>
+    </form>
+  );
+};
 
-    const handleClick = () => {
-        onSubmit && onSubmit({ email })
-
-    }
-    return (
-
-        <div>
-            <div><input type='text' name='email' onChange={handleEmailChange} /></div>
-            <div><input type='password' name='password' onChange={handleEmailChange} /></div>
-            <button onClick={handleClick}>Login</button>
-        </div>
-    )
-}
-
-export default LoginForm
+export default LoginForm;
