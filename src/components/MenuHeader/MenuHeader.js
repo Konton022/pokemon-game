@@ -17,9 +17,23 @@ const MenuHeader = ({ bgActive }) => {
     setOpenModal((prevState) => !prevState);
   };
 
-  const handleSubmitLoginForm = (values) => {
-    console.log('values', values);
-  }
+  const handleSubmitLoginForm = async ({ email, password }) => {
+    // console.log("values", values);
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+        returnSecureToken: true,
+      }),
+    };
+
+    const response = await fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDQW9QFQydo9JtMPkVxxAt55ImBDXyNUsQ",
+      requestOptions
+    ).then((res) => res.json());
+    console.log("response", response);
+  };
 
   return (
     <div>
@@ -36,9 +50,7 @@ const MenuHeader = ({ bgActive }) => {
         title="Log in...."
         onCloseModal={handleClickLogin}
       >
-        <LoginForm
-          onSubmit={handleSubmitLoginForm} />
-
+        <LoginForm onSubmit={handleSubmitLoginForm} />
       </Modal>
     </div>
   );
