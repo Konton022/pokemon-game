@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import { NotificationManager } from "react-notifications";
 import LoginForm from "../LoginForm";
 import Menu from "../Menu/Menu";
 import Modal from "../Modal";
@@ -33,6 +35,11 @@ const MenuHeader = ({ bgActive }) => {
       requestOptions
     ).then((res) => res.json());
     console.log("response", response);
+    if (response.hasOwnProperty("error")) {
+      NotificationManager.error(response.error.message, "Wrong!");
+    } else {
+      NotificationManager.success("Successe message!");
+    }
   };
 
   return (
