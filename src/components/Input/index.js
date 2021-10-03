@@ -8,6 +8,7 @@ const Input = ({ value, label, type = "text", name, required, setChange }) => {
   return (
     <div className={s.root}>
       <input
+        value={value}
         name={name}
         type={type}
         className={s.input}
