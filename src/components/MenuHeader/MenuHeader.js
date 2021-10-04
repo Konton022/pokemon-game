@@ -63,6 +63,21 @@ const MenuHeader = ({ bgActive }) => {
     if (response.hasOwnProperty("error")) {
       NotificationManager.error(response.error.message, "Wrong!");
     } else {
+      if (props.type === "singup") {
+        const pokemonsStart = await fetch(
+          " https://reactmarathon-api.herokuapp.com/api/pokemons/starter"
+        ).then((res) => res.json());
+
+        for (const item of pokemonsStart.data) {
+          await fetch(
+            `https://pokemon-game-fd5db-default-rtdb.firebaseio.com/${response.localId}/pokemons.json?auth=${response.idToken}`,
+            {
+              method: "POST",
+              body: JSON.stringify(item),
+            }
+          );
+        }
+      }
       localStorage.setItem("idToken", response.idToken);
       NotificationManager.success("Successe message!");
       handleClickLogin();

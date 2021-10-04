@@ -16,11 +16,17 @@ import { FireBaseContext } from "./context/firebaseContext";
 import Firebase from "./service/firebase";
 import FirebaseClass from "./service/firebase";
 import PrivateRoute from "./components/PrivateRoute";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUserAsync } from "./store/user";
 const App = () => {
   const location = useLocation();
   const isPadding =
     location.pathname === "/" || location.pathname === "/game/board";
-
+  const dispath = useDispatch();
+  useEffect(() => {
+    dispath(getUserAsync());
+  }, []);
   return (
     <FireBaseContext.Provider value={FirebaseClass}>
       <Switch>
