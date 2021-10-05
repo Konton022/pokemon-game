@@ -31,7 +31,7 @@ const NavBar = ({
             </div>
           )}
           {!isLoadingUser && localId && (
-            <Link className={s.loginWrap} to="./login">
+            <Link className={s.loginWrap} to="./user">
               <UserSVG />
             </Link>
           )}
