@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const slice = createSlice({
   name: "user",
   initialState: {
-    isLoading: true,
+    isLoading: false,
     data: {},
   },
   reducers: {
@@ -27,10 +27,9 @@ export const selectUserLoading = (state) => state.user.isLoading;
 export const selectUser = (state) => state.user.data;
 export const selectLocalId = (state) => state.user.data?.localId;
 
-export const getUserAsync = () => async (dispath) => {
+export const getUserUpdateAsync = () => async (dispath) => {
   const idToken = localStorage.getItem("idToken");
   if (idToken) {
-    dispath(fetchUser());
     const requestOptions = {
       method: "POST",
       body: JSON.stringify({ idToken }),
@@ -52,4 +51,8 @@ export const getUserAsync = () => async (dispath) => {
   }
 };
 
+export const getUserAsync = () => (dispath) => {
+  dispath(fetchUser);
+  dispath(getUserUpdateAsync);
+};
 export default slice.reducer;
