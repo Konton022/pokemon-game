@@ -8,16 +8,20 @@ const UserPage = () => {
   return (
     <>
       <h1>User PAGE</h1>
-      <div>
-        {Object.keys(userInfo).map((item, index) => {
-          return (
-            <li key={index}>
-              <span>{item}</span>
-              <span>{userInfo[item]}</span>
-            </li>
-          );
-        })}
-      </div>
+      <table>
+        <tr>
+          <td>USER</td>
+          <td>{userInfo.email}</td>
+        </tr>
+        <tr>
+          <td>REGISTRED</td>
+          <td>{userInfo.createdAt}</td>
+        </tr>
+        <tr>
+          <td>LAST SEEN</td>
+          <td>{userInfo.lastLoginAt}</td>
+        </tr>
+      </table>
     </>
   );
 };
