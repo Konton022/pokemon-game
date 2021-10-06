@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { NotificationManager } from "react-notifications";
+import { useDispatch } from "react-redux";
+import { getUserAsync, getUserUpdateAsync } from "../../store/user";
 import LoginForm from "../LoginForm";
 import Menu from "../Menu/Menu";
 import Modal from "../Modal";
@@ -35,6 +37,7 @@ const loginSingupUser = async ({ email, password, type }) => {
 const MenuHeader = ({ bgActive }) => {
   const [active, setActive] = useState(null);
   const [isOpenModal, setOpenModal] = useState(false);
+  const dispath = useDispatch();
 
   const handleClickButton = () => {
     setActive((prevState) => !prevState);
@@ -45,26 +48,29 @@ const MenuHeader = ({ bgActive }) => {
   };
 
   const handleSubmitLoginForm = async (props) => {
-    // // console.log("values", values);
-    // const requestOptions = {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email,
-    //     password,
-    //     returnSecureToken: true,
-    //   }),
-    // };
     const response = await loginSingupUser(props);
-    // const response = await fetch(
-    //   "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDQW9QFQydo9JtMPkVxxAt55ImBDXyNUsQ",
-    //   requestOptions
-    // ).then((res) => res.json());
     console.log("response", response);
     if (response.hasOwnProperty("error")) {
       NotificationManager.error(response.error.message, "Wrong!");
     } else {
+      if (props.type === "singup") {
+        const pokemonsStart = await fetch(
+          " https://reactmarathon-api.herokuapp.com/api/pokemons/starter"
+        ).then((res) => res.json());
+
+        for (const item of pokemonsStart.data) {
+          await fetch(
+            `https://pokemon-game-fd5db-default-rtdb.firebaseio.com/${response.localId}/pokemons.json?auth=${response.idToken}`,
+            {
+              method: "POST",
+              body: JSON.stringify(item),
+            }
+          );
+        }
+      }
       localStorage.setItem("idToken", response.idToken);
       NotificationManager.success("Successe message!");
+      dispath(getUserUpdateAsync());
       handleClickLogin();
     }
   };

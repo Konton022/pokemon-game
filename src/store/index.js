@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter";
+import userReducer from "./user.js";
 import pokemonsReducer from "./pokemons";
 import choicePokemonsReducer from "./selectPokemons";
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    user: userReducer,
     pokemons: pokemonsReducer,
     choicePokemons: choicePokemonsReducer,
   },
